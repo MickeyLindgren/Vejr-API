@@ -1,3 +1,4 @@
+#API fra https://openweathermap.org
 import requests
 import json
 
