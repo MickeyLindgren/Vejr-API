@@ -1,0 +1,22 @@
+import requests
+
+
+DMI_FORECAST_URL = 'https://dmigw.govcloud.dk/v1/forecastedr/collections/dkss_nsbs/cube'
+
+
+params = {
+    'bbox': '11,55,12,56',  # Bounding box specifikt for området
+    'crs': 'crs84',          # Koordinatsystem
+    'parameter-name': 'water-temperature,salinity' 
+}
+
+response = requests.get(DMI_FORECAST_URL, params=params)
+
+
+if response.status_code == 200:
+    print("Forespørgslen var succesfuld. Respons JSON:")
+    data = response.json()  
+    print(data)  
+else:
+    print(f"Fejl ved hentning af data: Statuskode {response.status_code}")
+    print(response.text)  
